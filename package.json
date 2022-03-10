@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
-    "lint": "eslint --fix --ignore-path .gitignore \"./src/*.{js,jsx}\"",
+    "lint": "eslint --ignore-path .gitignore \"./packages/**/*.{ts,tsx,js,jsx}\"",
     "format": "prettier --write \"{*,**/*}.{js,jsx,json,yml,yaml,md}\""
   },
   "keywords": [],
