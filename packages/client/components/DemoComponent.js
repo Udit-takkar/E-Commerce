@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 function DemoComponent() {
   useEffect(() => {
-    console.log('Hello World');
+    console.log('Hello');
   }, []);
-  return <div>DemoComponent</div>;
+  return <div>Hello</div>;
 }
 
 export default DemoComponent;
