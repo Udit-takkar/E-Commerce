@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'jakarta';
+  src: url('../public/font/PlusJakartaDisplay-Bold.otf') format('otf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'helvetica';
+  src: url('../public/font/Helvetica.otf') format('otf');
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -17,4 +31,91 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.nav-bar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.header-landing {
+  position: relative;
+  padding: 125px 5% 60px;
+  background-color: 'transparent';
+}
+
+.container-hp {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1140px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: transparent;
+  font-family: 'jakarta';
+
+  /* opacity: 1;
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
+    rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d; */
+}
+
+.homepage-grid {
+  grid-template-rows: auto;
+}
+
+.w-layout-grid {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: auto auto; */
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+}
+
+.title-wrap-main-heading {
+  align-self: center;
+  justify-self: start;
+  max-width: 100%;
+  margin-bottom: 0px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.main-img {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
+    rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+  transform-style: preserve-3d;
+  justify-self: center;
+  align-self: center;
+}
+
+.main-heading {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 16px;
+  color: #111;
+  font-size: 56px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.main-para {
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+}
+
+.get-started-btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
