@@ -20,6 +20,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/api/hello', (req, res) => {
+  res.json({ status: 200, message: 'Hello World' });
+});
+
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console
   console.log(`Backend server is running! at ${PORT}`),
