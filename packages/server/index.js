@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const product = require('./api/test');
 
 const app = express();
 const cors = require('cors');
@@ -20,9 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/hello', (req, res) => {
-  res.json({ status: 200, message: 'Hello World' });
-});
+app.use('/api/product', product);
 
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console
