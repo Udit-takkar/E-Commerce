@@ -2,6 +2,8 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import Logo from '../assets/logo.png';
+import Image from 'next/image';
 
 // const navigation = [
 //   { name: 'Dashboard', href: '#', current: true },
@@ -18,7 +20,7 @@ export default function Header() {
   return (
     <Disclosure
       as="nav"
-      className="absolute top-0 left-0  right-0 w-full z-10 text-black nav-bar"
+      className="absolute top-0 left-0  right-0 w-full z-20 text-black nav-bar"
     >
       {({ open }) => (
         <>
@@ -35,19 +37,11 @@ export default function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-between sm:items-stretch ">
-                <div className="flex-shrink-0 flex items-center">
-                  {/* <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
-                  /> */}
-                  <h1>Workflow</h1>
+              <div className="flex-1 flex items-center justify-between h-full">
+                <div className="flex-shrink-0 flex items-center h-full">
+                  <div className="my-auto max-w-[100px] mt-4">
+                    <Image src={Logo} alt="main-logo" />
+                  </div>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4 items-center">
@@ -75,9 +69,15 @@ export default function Header() {
                       />
                     </div>
 
-                    <Link href="/">Become a seller</Link>
-                    <Link href="/">Login</Link>
-                    <Link href="/">SignUp</Link>
+                    <Link href="/">
+                      <span className="font-medium">Become a seller</span>
+                    </Link>
+                    <Link href="/">
+                      <span className="font-medium">Login</span>
+                    </Link>
+                    <Link href="/">
+                      <span className="font-medium">SignUp</span>
+                    </Link>
                     {/* {navigation.map(item => (
                       <a
                         key={item.name}

@@ -143,7 +143,6 @@ a {
   margin-top: 10;
   /* grid-template-columns: repeat(1fr); */
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-
   gap: 30px;
 }
 
