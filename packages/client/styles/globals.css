@@ -271,3 +271,100 @@ a {
 .SButtonAdd:hover > .addPlusIcon {
   fill: white;
 }
+
+.Heading {
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.SDetailsGrid {
+  /* display:block; */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+/* .SDetailsGrid > h2 {
+
+} */
+
+#price-container {
+  display: flex;
+  align-items: center;
+}
+
+.SImageContainer {
+  grid-column: 1/6;
+}
+
+.SDetailContainer {
+  grid-column: 6/13;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.SImage {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.SOriginalCost {
+  text-decoration: line-through;
+  color: grey;
+  margin-left: 20px;
+}
+
+.percentage-off {
+  letter-spacing: normal;
+  text-align: center;
+  color: #fff;
+  background-color: #ee741f;
+  font-weight: bold;
+  display: inline-block;
+  height: 22px;
+  border-radius: 4px;
+  padding-top: 1.5px;
+  text-transform: uppercase;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 4px;
+}
+
+.SButtonContainer {
+  display: flex;
+  /* padding: 1.2rem 40px; */
+  padding-top: 40px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  width: 100%;
+  color: white;
+  margin-top: auto;
+
+  /* align-self: flex-start; */
+  /* background-color: rgb(20, 110, 180); */
+}
+
+.SCheckoutButtonLarge {
+  flex: 0.5;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background-color: #115f9c;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(20, 110, 180);
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.SCheckoutButtonLarge:hover {
+  background-color: white;
+  color: #115f9c;
+}

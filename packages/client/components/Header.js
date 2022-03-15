@@ -73,10 +73,10 @@ export default function Header() {
                       <span className="font-medium">Become a seller</span>
                     </Link>
                     <Link href="/">
-                      <span className="font-medium">Login</span>
+                      <span className="font-medium">Log in</span>
                     </Link>
                     <Link href="/">
-                      <span className="font-medium">SignUp</span>
+                      <span className="font-medium">Sign up</span>
                     </Link>
                     {/* {navigation.map(item => (
                       <a

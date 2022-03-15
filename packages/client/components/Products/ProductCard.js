@@ -64,12 +64,13 @@ function ProductCard({ product, category_id }) {
   );
 }
 
-function ButtonAdd({ isInCart, addToCart }) {
+export function ButtonAdd({ isInCart, addToCart, styles = {} }) {
   return (
     <button
       className="SButtonAdd"
       type="button"
       onClick={() => console.log('Hello')}
+      style={styles}
     >
       <span className="mr-2">Add</span>
       <svg
