@@ -1,0 +1,115 @@
+{
+   "top_categories":[
+    {
+      "id": 687,
+      "name": "SPICES OR MASALA",
+      "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/SPICES-OR-MASALA.png?alt=media",
+      "product_count": 77
+    }
+   ],
+   "top_products": [ 
+       {
+      "category_id": 687,
+      "category_name": "SPICES OR MASALA",
+      "product_count": 77,
+      "products": [
+        {
+          "is_hidden": false,
+          "id": 89063,
+          "base_cost": 53,
+          "original_cost": 56,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/EVEREST-TURMERIC-(HALDI)-200-GRAM.png?alt=media",
+          "name": "EVEREST TURMERIC (HALDI) 200 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2507,
+          "base_cost": 22,
+          "original_cost": 24,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/PATANJALI-TURMERIC-(HALDI)-POWDER--100-GRAM.png?alt=media",
+          "name": "PATANJALI TURMERIC (HALDI) POWDER  100 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2498,
+          "base_cost": 42,
+          "original_cost": 45,
+          "base_qty": "1 unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/PATANJALI-SABJI-MASALA-100-GRAM.png?alt=media",
+          "name": "PATANJALI SABJI MASALA 100 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2500,
+          "base_cost": 37,
+          "original_cost": 40,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/PATANJALI-CUMIN-(JEERA)-POWDER.png?alt=media",
+          "name": "PATANJALI CUMIN (JEERA) POWDER",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2491,
+          "base_cost": 5,
+          "original_cost": 7,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/FOOD-COLOUR-ORANGE-RED.png?alt=media",
+          "name": "FOOD COLOUR ORANGE RED",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+             {
+          "is_hidden": false,
+          "id": 2490,
+          "base_cost": 43,
+          "original_cost": 45,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/EVEREST-HINGRAJ-25-GRAM.png?alt=media",
+          "name": "EVEREST HINGRAJ 25 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2486,
+          "base_cost": 19,
+          "original_cost": 20,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/EVEREST-HINGRAJ-10-GRAM.png?alt=media",
+          "name": "EVEREST HINGRAJ 10 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        },
+        {
+          "is_hidden": false,
+          "id": 2484,
+          "base_cost": 38,
+          "original_cost": 40,
+          "base_qty": "per unit",
+          "image": "https://firebasestorage.googleapis.com/v0/b/mydukaan-e9b72.appspot.com/o/PATANJALI-HING-25-GRAM.png?alt=media",
+          "name": "PATANJALI HING 25 GRAM",
+          "description": "",
+          "is_active": true,
+          "variants": []
+        }
+    ]
+}
+   ]
+}
