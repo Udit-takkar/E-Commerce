@@ -200,7 +200,7 @@ function Footer() {
           >
             <span className="text-yellow-400">
               <StarIcon className="block h-6 w-6" aria-hidden="true" />
-            </span>{' '}
+            </span>
             Advertise
           </a>
           <a
@@ -211,7 +211,7 @@ function Footer() {
           >
             <span className="text-yellow-400">
               <GiftIcon className="block h-6 w-6" aria-hidden="true" />
-            </span>{' '}
+            </span>
             Gift Cards
           </a>
           <a
