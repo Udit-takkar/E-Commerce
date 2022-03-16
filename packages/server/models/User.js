@@ -10,7 +10,10 @@ const UserSchema = new Schema(
     email: String,
     imageURL: String,
     password: String,
-    role: String,
+    role: {
+      type: String,
+      default: 'user',
+    },
   },
   {
     timestamps: true,
