@@ -69,14 +69,14 @@ export default function Header() {
                       />
                     </div>
 
-                    <Link href="/">
-                      <span className="font-medium">Become a seller</span>
+                    <Link href="/SignupSell">
+                      <span className="font-medium"><a href="#" className='border-2 border-black text-black rounded-full  px-2 py-1 inline-block font-semibold hover:bg-black hover:text-white'>Become a seller</a></span>
                     </Link>
-                    <Link href="/">
-                      <span className="font-medium">Log in</span>
+                    <Link href="/Signin">
+                      <span className="font-medium"><a href="#" className='border-2 border-black text-black rounded-full  px-2 py-1 inline-block font-semibold hover:bg-black hover:text-white'>Log in</a></span>
                     </Link>
-                    <Link href="/">
-                      <span className="font-medium">Sign up</span>
+                    <Link href="/Signup">
+                      <span className="font-medium"><a href="#" className='border-2 border-black text-black rounded-full  px-2 py-1 inline-block font-semibold hover:bg-black hover:text-white'>Sign up</a></span>
                     </Link>
                     {/* {navigation.map(item => (
                       <a
