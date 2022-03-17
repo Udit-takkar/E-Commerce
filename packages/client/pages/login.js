@@ -35,7 +35,7 @@ export default function Signin() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-16 bg-gray-100">
+    <div className=" flex min-h-screen flex-col items-center justify-center py-16 bg-gray-100">
       <Head>
         <title>Login/Sign-up Page</title>
         <link rel="icon" href="/favicon.ico" />
