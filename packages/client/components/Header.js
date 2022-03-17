@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import Logo from '../assets/logo.png';
 import Image from 'next/image';
+import useUser from '../hooks/useUser';
 
 // const navigation = [
 //   { name: 'Dashboard', href: '#', current: true },
@@ -17,6 +18,8 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const { data: loggedInUser } = useUser();
+  console.log('Logged in ', loggedInUser);
   return (
     <Disclosure
       as="nav"
@@ -69,14 +72,18 @@ export default function Header() {
                       />
                     </div>
 
-                    <Link href="/">
-                      <span className="font-medium">Become a seller</span>
+                    <Link href="/sellerSignup">
+                      <span className="font-medium cursor-pointer">
+                        Become a seller
+                      </span>
                     </Link>
-                    <Link href="/">
-                      <span className="font-medium">Log in</span>
+                    <Link href="/login">
+                      <span className="font-medium cursor-pointer">Log in</span>
                     </Link>
-                    <Link href="/">
-                      <span className="font-medium">Sign up</span>
+                    <Link href="/signup">
+                      <span className="font-medium cursor-pointer">
+                        Sign up
+                      </span>
                     </Link>
                     {/* {navigation.map(item => (
                       <a
