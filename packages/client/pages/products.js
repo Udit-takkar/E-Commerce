@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import {
@@ -9,14 +9,17 @@ import {
   PlusSmIcon,
   ViewGridIcon,
 } from '@heroicons/react/solid';
-// import data from '../sampleData.json';
-import ProductSection from '../components/Products/ProductSection';
 import ProductCard from '../components/Products/ProductCard';
 import useProducts from '../hooks/useProducts';
 import Head from 'next/head';
 import { ProductService } from '../services/ProductService';
 import useSWR from 'swr';
 import { CategoryService } from '../services/CategoryService';
+import useCart from '../hooks/useCart';
+
+export function getPercentageDecreased(originalPrice, basePrice) {
+  return Math.round(((originalPrice - basePrice) / originalPrice) * 100);
+}
 
 const sortOptions = [
   { name: 'Price: Low to High', value: 1, id: 1 },
@@ -82,8 +85,8 @@ export default function Products() {
     '/api/categories',
     CategoryService.getCategories,
   );
+  const { addToCart, cart, removeFromCart } = useCart();
 
-  console.log(categories);
   return (
     <div className="bg-white">
       <Head>
@@ -498,13 +501,36 @@ export default function Products() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 <div className="SProductGrid">
-                  {data?.map(product => (
-                    <ProductCard
-                      product={product}
-                      key={product.id}
-                      category_id={product.category.id}
-                    />
-                  ))}
+                  {data?.map(product => {
+                    const onlyAboveProduct = cart.filter(
+                      item => item._id === product._id,
+                    )[0];
+                    const isInCart = !!onlyAboveProduct;
+
+                    const percentage = getPercentageDecreased(
+                      product.price,
+                      product.sale_price,
+                    );
+
+                    const isDiscount = product.price !== product.sale_price;
+
+                    const handleAddToCart = () => {
+                      addToCart(product);
+                    };
+                    return (
+                      <ProductCard
+                        product={product}
+                        key={product.id}
+                        category_id={product.category.id}
+                        handleAddToCart={handleAddToCart}
+                        isInCart={isInCart}
+                        onlyAboveProduct={onlyAboveProduct}
+                        removeFromCart={removeFromCart}
+                        percentage={percentage}
+                        isDiscount={isDiscount}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>

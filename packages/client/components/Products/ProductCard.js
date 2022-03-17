@@ -1,15 +1,27 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable camelcase */
 
 import React from 'react';
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/solid';
 
 function Placeholder() {
   return <div className="SProductImagePlaceholder animate-pulse" />;
 }
 
-function ProductCard({ product, category_id }) {
+function ProductCard({
+  product,
+  category_id,
+  handleAddToCart,
+  isInCart,
+  onlyAboveProduct,
+  removeFromCart,
+  percentage,
+  isDiscount,
+}) {
   return (
     <div className="SProductGridItem">
       <Link key={product.id} href={`/details/${category_id}/${product.id}`}>
@@ -23,11 +35,8 @@ function ProductCard({ product, category_id }) {
             placeholder={<Placeholder />}
             srcSet={product.imageURL}
           />
-          <div className="SProductBadge">15% Off</div>
 
-          {/* {!arePricesSame && (
-                  <SProductBadge>{percentage}% Off</SProductBadge>
-                )} */}
+          {isDiscount && <div className="SProductBadge">{percentage}% Off</div>}
         </a>
       </Link>
       <div className="SProductBody">
@@ -40,28 +49,26 @@ function ProductCard({ product, category_id }) {
             </h2>
           </a>
         </Link>
-        {/* <small>{product.base_qty}</small> */}
         <div className="SProductPrice">
           <div className="SPriceContainer">
             <div className="base-cost">₹{product.sale_price}</div>
-            {/* {!arePricesSame && (
-                    <div id="base-cost">₹{product.original_cost}</div>
-                  )} */}
-            <div className="original-cost">₹{product.price}</div>
+            {isDiscount && (
+              <div className="original-cost">₹{product.price}</div>
+            )}
           </div>
-          <ButtonAdd isInCart={false} addToCart={() => console.log('Hello')} />
-          {/* {isInCart ? (
-                  <ButtonCounter
-                    count={onlyAboveProduct.count}
-                    addToCart={handleAddToCart()}
-                    removeFromCart={() => removeFromCart(product)}
-                  />
-                ) : (
-                  <ButtonAdd
-                    isInCart={!!onlyAboveProduct}
-                    addToCart={handleAddToCart()}
-                  />
-                )} */}
+
+          {isInCart ? (
+            <ButtonCounter
+              count={onlyAboveProduct.count}
+              addToCart={() => handleAddToCart()}
+              removeFromCart={() => removeFromCart(product)}
+            />
+          ) : (
+            <ButtonAdd
+              isInCart={isInCart}
+              addToCart={() => handleAddToCart()}
+            />
+          )}
         </div>
       </div>
     </div>
@@ -73,7 +80,7 @@ export function ButtonAdd({ isInCart, addToCart, styles = {} }) {
     <button
       className="SButtonAdd"
       type="button"
-      onClick={() => console.log('Hello')}
+      onClick={() => addToCart()}
       style={styles}
     >
       <span className="mr-2">Add</span>
@@ -90,6 +97,34 @@ export function ButtonAdd({ isInCart, addToCart, styles = {} }) {
         </g>
       </svg>
     </button>
+  );
+}
+
+export function ButtonCounter({ count, removeFromCart, addToCart }) {
+  return (
+    <div className="SButtonCounter flex space-between items-center p-[0.25rem] ">
+      <div
+        onClick={() => removeFromCart()}
+        className="cursor-pointer flex items-center justify-center flex-1 h-full"
+      >
+        <MinusSmIcon
+          color="rgb(20, 110, 180)"
+          className="h-5 w-5"
+          aria-hidden="true"
+        />
+      </div>
+      <p className="SProductCount h-full ">{count}</p>
+      <div
+        onClick={() => addToCart()}
+        className="cursor-pointer flex items-center justify-center flex-1 h-full"
+      >
+        <PlusSmIcon
+          className="h-5 w-5"
+          color="rgb(20, 110, 180)"
+          aria-hidden="true"
+        />
+      </div>
+    </div>
   );
 }
 
