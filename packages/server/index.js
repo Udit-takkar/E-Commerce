@@ -31,6 +31,8 @@ app.use((req, res, next) => {
 
 app.use('/api/product', product);
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/categories', require('./routes/categoryRoutes'));
 
 app.listen(PORT, () =>
   // eslint-disable-next-line no-console

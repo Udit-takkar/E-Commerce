@@ -48,7 +48,6 @@ const signUp = async (req, res, next) => {
 };
 
 const getMe = async (req, res) => {
-  console.log('REQU', req.user);
   res.status(200).json({ data: { user: req.user } });
 };
 
