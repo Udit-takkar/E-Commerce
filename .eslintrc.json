@@ -28,7 +28,8 @@
     // disable form label
     "jsx-a11y/label-has-associated-control": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "eslint-plugin-jsx-a11y":"off"
   },
   "overrides": [
     {

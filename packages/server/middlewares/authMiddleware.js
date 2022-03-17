@@ -2,6 +2,7 @@ const passport = require('passport');
 
 const protect = (req, res, next) =>
   passport.authenticate('jwt', { session: false }, (err, user, info) => {
+    console.log('User', user);
     if (err) {
       return next(info);
     }

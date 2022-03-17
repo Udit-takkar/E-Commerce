@@ -13,8 +13,9 @@ passport.use(
     },
     async (token, done) => {
       try {
-        const { userId } = token;
-        const user = await User.findById(userId);
+        const { user_id } = token;
+        const user = await User.findById({ _id: user_id });
+
         if (!user) return done(null, false, 'User not found');
         // Pass the user details to the next middleware
         return done(null, user);
