@@ -18,10 +18,10 @@ function ProductCard({ product, category_id }) {
             effect="blur"
             delayTime={500}
             className="product-image"
-            src={product.image}
+            src={product.imageURL}
             alt={product.name}
             placeholder={<Placeholder />}
-            srcSet={product.image}
+            srcSet={product.imageURL}
           />
           <div className="SProductBadge">15% Off</div>
 
@@ -33,17 +33,21 @@ function ProductCard({ product, category_id }) {
       <div className="SProductBody">
         <Link key={product.id} href={`/details/${category_id}/${product.id}`}>
           <a href="/">
-            <h2 className="SProductBody-h2">{product.name.toLowerCase()}</h2>
+            <h2 className="SProductBody-h2">
+              {product.name.length > 40
+                ? `${product.name.slice(0, 40).toLowerCase()}..`
+                : product.name.toLowerCase()}
+            </h2>
           </a>
         </Link>
-        <small>{product.base_qty}</small>
+        {/* <small>{product.base_qty}</small> */}
         <div className="SProductPrice">
           <div className="SPriceContainer">
-            <div className="base-cost">₹{product.base_cost}</div>
+            <div className="base-cost">₹{product.sale_price}</div>
             {/* {!arePricesSame && (
                     <div id="base-cost">₹{product.original_cost}</div>
                   )} */}
-            <div className="original-cost">₹{product.original_cost}</div>
+            <div className="original-cost">₹{product.price}</div>
           </div>
           <ButtonAdd isInCart={false} addToCart={() => console.log('Hello')} />
           {/* {isInCart ? (

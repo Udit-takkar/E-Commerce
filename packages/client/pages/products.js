@@ -1,4 +1,5 @@
-import { Fragment, useState } from 'react';
+/* eslint-disable no-underscore-dangle */
+import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import {
@@ -8,16 +9,20 @@ import {
   PlusSmIcon,
   ViewGridIcon,
 } from '@heroicons/react/solid';
-import data from '../sampleData.json';
+// import data from '../sampleData.json';
 import ProductSection from '../components/Products/ProductSection';
 import ProductCard from '../components/Products/ProductCard';
+import useProducts from '../hooks/useProducts';
+import Head from 'next/head';
+import { ProductService } from '../services/ProductService';
+import useSWR from 'swr';
+import { CategoryService } from '../services/CategoryService';
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Price: Low to High', value: 1, id: 1 },
+  { name: 'Price: High to Low', value: -1, id: 2 },
+  // { name: 'Best Rating', href: '#', current: false },
+  // { name: 'Newest', href: '#', current: false },
 ];
 const subCategories = [
   { name: 'Totes', href: '#' },
@@ -39,17 +44,17 @@ const filters = [
       { value: 'purple', label: 'Purple', checked: false },
     ],
   },
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
-    ],
-  },
+  // {
+  //   id: 'category',
+  //   name: 'Category',
+  //   options: [
+  //     { value: 'new-arrivals', label: 'New Arrivals', checked: false },
+  //     { value: 'sale', label: 'Sale', checked: false },
+  //     { value: 'travel', label: 'Travel', checked: true },
+  //     { value: 'organization', label: 'Organization', checked: false },
+  //     { value: 'accessories', label: 'Accessories', checked: false },
+  //   ],
+  // },
   {
     id: 'size',
     name: 'Size',
@@ -68,11 +73,24 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Products() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const { data, setQueryVariables, isLoading } = useProducts();
+  const [activeCategoryId, setActiveCategoryId] = useState(null);
+  const [activeSortFilterId, setActiveSortFilterId] = useState(1);
+  const { data: categories, loading } = useSWR(
+    '/api/categories',
+    CategoryService.getCategories,
+  );
 
+  console.log(categories);
   return (
     <div className="bg-white">
+      <Head>
+        <title>Artify Products</title>
+        <meta name="description" content="Arify" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -130,6 +148,62 @@ export default function Example() {
                       </li>
                     ))}
                   </ul>
+
+                  <Disclosure
+                    as="div"
+                    className="border-t border-gray-200 px-4 py-6"
+                  >
+                    {({ open }) => (
+                      <>
+                        <h3 className="-mx-2 -my-3 flow-root">
+                          <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
+                            <span className="font-medium text-gray-900">
+                              Categories
+                            </span>
+                            <span className="ml-6 flex items-center">
+                              {open ? (
+                                <MinusSmIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                <PlusSmIcon
+                                  className="h-5 w-5"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </span>
+                          </Disclosure.Button>
+                        </h3>
+                        <Disclosure.Panel className="pt-6">
+                          <div className="space-y-6">
+                            {categories?.map((category, optionIdx) => (
+                              <div
+                                key={category._id}
+                                className="flex items-center"
+                              >
+                                <input
+                                  id={`filter-mobile-${category._id}-${optionIdx}`}
+                                  name={`${category._id}[]`}
+                                  defaultValue={category.name}
+                                  type="checkbox"
+                                  defaultChecked={false}
+                                  checked={category.Id === activeCategoryId}
+                                  className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                                />
+                                <label
+                                  htmlFor={`filter-mobile-${category._id}-${optionIdx}`}
+                                  className="ml-3 min-w-0 flex-1 text-gray-500"
+                                >
+                                  {category.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
 
                   {filters.map(section => (
                     <Disclosure
@@ -226,10 +300,17 @@ export default function Example() {
                       {sortOptions.map(option => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setActiveSortFilterId(option.id);
+                                setQueryVariables(prev => ({
+                                  ...prev,
+                                  price: option.value,
+                                }));
+                              }}
                               className={classNames(
-                                option.current
+                                option.id === activeSortFilterId
                                   ? 'font-medium text-gray-900'
                                   : 'text-gray-500',
                                 active ? 'bg-gray-100' : '',
@@ -237,7 +318,7 @@ export default function Example() {
                               )}
                             >
                               {option.name}
-                            </a>
+                            </button>
                           )}
                         </Menu.Item>
                       ))}
@@ -283,6 +364,77 @@ export default function Example() {
                     </li>
                   ))}
                 </ul>
+
+                <Disclosure
+                  as="div"
+                  className="border-b border-gray-200 py-6"
+                  defaultOpen
+                >
+                  {({ open }) => (
+                    <>
+                      <h3 className="-my-3 flow-root">
+                        <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
+                          <span className="font-medium text-gray-900">
+                            Categories
+                          </span>
+                          <span className="ml-6 flex items-center">
+                            {open ? (
+                              <MinusSmIcon
+                                className="h-5 w-5"
+                                aria-hidden="true"
+                              />
+                            ) : (
+                              <PlusSmIcon
+                                className="h-5 w-5"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </span>
+                        </Disclosure.Button>
+                      </h3>
+                      <Disclosure.Panel className="pt-6">
+                        <div className="space-y-4">
+                          {categories?.map((category, optionIdx) => (
+                            <div
+                              key={category.id}
+                              className="flex items-center"
+                            >
+                              <input
+                                id={`filter-${category._id}-${optionIdx}`}
+                                name={`${category._id}[]`}
+                                type="checkbox"
+                                defaultChecked={false}
+                                checked={activeCategoryId === category._id}
+                                onClick={() => {
+                                  if (activeCategoryId === category._id) {
+                                    setActiveCategoryId(null);
+                                    setQueryVariables(prev => ({
+                                      ...prev,
+                                      category: null,
+                                    }));
+                                  } else {
+                                    setActiveCategoryId(category._id);
+                                    setQueryVariables(prev => ({
+                                      ...prev,
+                                      category: category._id,
+                                    }));
+                                  }
+                                }}
+                                className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+                              />
+                              <label
+                                htmlFor={`filter-${category.id}-${optionIdx}`}
+                                className="ml-3 text-sm text-gray-600"
+                              >
+                                {category.name}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
 
                 {filters.map(section => (
                   <Disclosure
@@ -346,11 +498,11 @@ export default function Example() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 <div className="SProductGrid">
-                  {data.top_products[0].products.map(product => (
+                  {data?.map(product => (
                     <ProductCard
                       product={product}
-                      key={product.category_name}
-                      category_id={product.category_id}
+                      key={product.id}
+                      category_id={product.category.id}
                     />
                   ))}
                 </div>
