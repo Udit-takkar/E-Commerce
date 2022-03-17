@@ -14,13 +14,13 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 8000;
 
-// app.use(cors());
+app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(passport.initialize());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+// app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Headers',
