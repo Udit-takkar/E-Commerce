@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Head from 'next/head';
+import { useState } from 'react';
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -12,8 +13,29 @@ import { MdLockOutline } from 'react-icons/md';
 import Link from 'next/link';
 import Image from 'next/image';
 import SignUpImage from '../assets/signup.jpg';
+import { AuthServices } from '../services/AuthServices';
+import { mutate } from 'swr';
+import { autoLogin } from '../utils/auth';
+import { useRouter } from 'next/router';
 
 export default function Signup() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    if (name === '' || email === '' || password === '') return;
+    try {
+      const { token } = await AuthServices.signUp({ email, name, password });
+      autoLogin(token);
+      mutate('/api/me');
+      router.push('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-16 bg-gray-100">
       <Head>
@@ -62,6 +84,8 @@ export default function Signup() {
                 <div className="bg-gray-100 w-64 p-1 flex items-center">
                   <FaRegUser className="text-gray-400 m-2" />
                   <input
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                     type="text"
                     name="fname"
                     placeholder="Full Name"
@@ -72,6 +96,8 @@ export default function Signup() {
                 <div className="bg-gray-100 w-64 p-1 flex items-center mt-3">
                   <FaRegEnvelope className="text-gray-400 m-2" />
                   <input
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -81,6 +107,8 @@ export default function Signup() {
                 <div className="bg-gray-100 w-64 p-1 flex items-center mt-3">
                   <MdLockOutline className="text-gray-400 m-2" />
                   <input
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     type="password"
                     name="password"
                     placeholder="Password"
@@ -97,12 +125,13 @@ export default function Signup() {
                     <a className="ml-2 font-medium font-serif">Log In</a>
                   </Link>
                 </p>
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  onClick={handleSubmit}
                   className="border-2 border-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-black hover:text-white mt-5"
                 >
                   Sign Up
-                </a>
+                </button>
               </div>
             </div>
           </div>
