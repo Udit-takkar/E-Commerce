@@ -11,31 +11,31 @@ function Cart() {
     0,
   );
 
-  if (!cart.length) {
-    return (
-      <div className="header-landing">
-        <div className="flex">
-          <div className="SCartHeading text-2xl font-bold">Checkout</div>
-          <div className="SBadge  text-2xl font-bold ml-2 text-blue-500">
-            (0)
-          </div>
-        </div>
-        <div className="flex items-center justify-center flex-col">
-          <Image src={ShoppingCart} height={500} width={500} />
-          <h1 className="text-center text-xl">
-            <span className="font-bold text-3xl">Your bag is empty</span> <br />{' '}
-            You don&apos;t have any products in your bag.
-          </h1>
-        </div>
-      </div>
-    );
-  }
-
   const totalItems = cart.reduce((acc, curr) => acc + curr.count, 0);
+
+  // if (cart.length === 0) {
+  //   return (
+  //     <div className="header-landing">
+  //       <div className="flex">
+  //         <div className="SCartHeading text-2xl font-bold">Checkout</div>
+  //         <div className="SBadge  text-2xl font-bold ml-2 text-blue-500">
+  //           (0)
+  //         </div>
+  //       </div>
+  //       <div className="flex items-center justify-center flex-col">
+  //         <Image src={ShoppingCart} height={500} width={500} />
+  //         <h1 className="text-center text-xl">
+  //           <span className="font-bold text-3xl">Your bag is empty</span> <br />{' '}
+  //           You don&apos;t have any products in your bag.
+  //         </h1>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="header-landing">
-      <div className="grid gap-1">
+      <div className="CartGrid">
         <div className="SCartHeader">
           <div className="SCartHeading text-3xl font-bold">Checkout</div>
           {totalItems && (
@@ -48,10 +48,10 @@ function Cart() {
           {cart.map(item => (
             <div className="SCartItem mb-8" key={item.id}>
               <Image
-                className="SCartImage"
+                className="SCartImage mr-8"
                 src={item.imageURL}
                 width="100%"
-                height={100}
+                height="100%"
               />
               <div className="SCartContent">
                 <h2 className="text-xl text-400">{item.name.toLowerCase()}</h2>
