@@ -24,7 +24,7 @@ function ProductCard({
 }) {
   return (
     <div className="SProductGridItem">
-      <Link key={product.id} href={`/details/${category_id}/${product.id}`}>
+      <Link key={product._id} href={`/products/${product._id}`}>
         <a className="SProductLink" href="/">
           <LazyLoadImage
             effect="blur"
@@ -40,7 +40,7 @@ function ProductCard({
         </a>
       </Link>
       <div className="SProductBody">
-        <Link key={product.id} href={`/details/${category_id}/${product.id}`}>
+        <Link key={product.id} href={`/products/${product._id}`}>
           <a href="/">
             <h2 className="SProductBody-h2">
               {product.name.length > 40
@@ -100,9 +100,17 @@ export function ButtonAdd({ isInCart, addToCart, styles = {} }) {
   );
 }
 
-export function ButtonCounter({ count, removeFromCart, addToCart }) {
+export function ButtonCounter({
+  count,
+  removeFromCart,
+  addToCart,
+  styles = {},
+}) {
   return (
-    <div className="SButtonCounter flex space-between items-center p-[0.25rem] ">
+    <div
+      className="SButtonCounter flex space-between items-center p-[0.25rem] "
+      style={styles}
+    >
       <div
         onClick={() => removeFromCart()}
         className="cursor-pointer flex items-center justify-center flex-1 h-full"

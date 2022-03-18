@@ -47,17 +47,6 @@ const filters = [
       { value: 'purple', label: 'Purple', checked: false },
     ],
   },
-  // {
-  //   id: 'category',
-  //   name: 'Category',
-  //   options: [
-  //     { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-  //     { value: 'sale', label: 'Sale', checked: false },
-  //     { value: 'travel', label: 'Travel', checked: true },
-  //     { value: 'organization', label: 'Organization', checked: false },
-  //     { value: 'accessories', label: 'Accessories', checked: false },
-  //   ],
-  // },
   {
     id: 'size',
     name: 'Size',

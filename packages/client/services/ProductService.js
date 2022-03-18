@@ -11,6 +11,18 @@ const getProducts = async (fields = {}) => {
   }
 };
 
+const getProductById = async id => {
+  try {
+    const url = `/products/${id}`;
+    console.log('Products Service', id);
+    const { data } = await apiClient.get(url);
+    return data.product;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const ProductService = {
   getProducts,
+  getProductById,
 };
