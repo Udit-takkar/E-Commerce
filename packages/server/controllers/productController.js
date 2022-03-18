@@ -43,6 +43,24 @@ const getProducts = async (req, res) => {
   }
 };
 
+const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('ID', id);
+    const product = await Product.findOne({ _id: id })
+      .populate('category')
+      .exec();
+
+    if (!product) return res.status(404).send('Not Found');
+
+    return res.status(200).send({ product });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Error in getting product by id' });
+  }
+};
+
 module.exports = {
   getProducts,
+  getProductById,
 };
