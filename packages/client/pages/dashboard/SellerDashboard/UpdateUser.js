@@ -206,3 +206,7 @@
 // };
 
 // export default UpdateUser;
+
+export default function UpdateUser() {
+  return <div>hello</div>;
+}

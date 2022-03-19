@@ -479,3 +479,7 @@
 // };
 
 // export default UpdateProduct;
+
+export default function UpdateProduct() {
+  return <div>hello</div>;
+}
