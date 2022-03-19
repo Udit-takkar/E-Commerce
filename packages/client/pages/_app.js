@@ -6,6 +6,7 @@ import '../styles/globals.css';
 import Header from '../components/Header';
 import { SWRConfig } from 'swr';
 import { HMSRoomProvider } from '@100mslive/react-sdk';
+import { SnackbarProvider } from 'notistack';
 
 function MyApp({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,14 +20,16 @@ function MyApp({ Component, pageProps }) {
           dedupingInterval: 0,
         }}
       >
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </Hydrate>
-        </QueryClientProvider>
+        <SnackbarProvider>
+          <QueryClientProvider client={queryClient}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </Hydrate>
+          </QueryClientProvider>
+        </SnackbarProvider>
       </SWRConfig>
     </HMSRoomProvider>
   );
