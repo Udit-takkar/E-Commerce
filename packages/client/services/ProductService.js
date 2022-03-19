@@ -5,6 +5,8 @@ const getProducts = async (fields = {}) => {
     const url = `/products`;
     console.log('Products Service', fields);
     const { data } = await apiClient.get(url, { params: fields });
+    console.log('Product', data.products);
+
     return data.products;
   } catch (error) {
     throw new Error(error);
@@ -16,6 +18,7 @@ const getProductById = async id => {
     const url = `/products/${id}`;
     console.log('Products Service', id);
     const { data } = await apiClient.get(url);
+    console.log('Product', data.product);
     return data.product;
   } catch (error) {
     throw new Error(error);

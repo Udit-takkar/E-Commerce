@@ -20,6 +20,8 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+      teal: colors.teal,
+      cyan: colors.cyan,
       primary: {
         blue: '#2874f0',
         lightGreen: '#14be47',
