@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Fire from '../assets/fire.png';
+import Head from 'next/head';
 
 const sampleEvents = [
   {
@@ -43,6 +44,11 @@ const sampleEvents = [
 function LiveEvents() {
   return (
     <div className="header-landing">
+      <Head>
+        <title>Artify Live Events</title>
+        <meta name="description" content="e commerce platform for artisans" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="relative bg-black h-48 rounded-3xl overflow-hidden bg-cover bg-center">
         <iframe
           title="banner"
