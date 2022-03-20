@@ -34,6 +34,7 @@ function ProductCard({
             alt={product.name}
             placeholder={<Placeholder />}
             srcSet={product.imageURL}
+            // height="100px"
           />
 
           {isDiscount && <div className="SProductBadge">{percentage}% Off</div>}
