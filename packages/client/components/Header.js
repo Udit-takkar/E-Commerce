@@ -7,6 +7,7 @@ import Image from 'next/image';
 import useUser from '../hooks/useUser';
 import Avatar from './Live/Avatar';
 import useLogout from '../hooks/useLogout';
+import { useRouter } from 'next/router';
 
 const unauthenticatedNav = [
   { name: 'Log In', href: '/login' },
@@ -22,10 +23,11 @@ const authenticatedNav = [
 export default function Header() {
   const { data: loggedInUser } = useUser();
   const logout = useLogout();
-  console.log('Logged in ', loggedInUser);
+  const router = useRouter();
 
   const handleLogout = () => {
     logout();
+    router.push('/login');
   };
   return (
     <Disclosure
@@ -50,7 +52,12 @@ export default function Header() {
               <div className="flex-1 flex items-center justify-between h-full">
                 <div className="flex-shrink-0 flex items-center h-full">
                   <div className="my-auto max-w-[115px] mt-4">
-                    <Image src={Logo} alt="main-logo" />
+                    <Image
+                      onClick={() => router.push('/')}
+                      className="cursor-pointer"
+                      src={Logo}
+                      alt="main-logo"
+                    />
                   </div>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -98,7 +105,11 @@ export default function Header() {
                           </Link>
                         ))}
                     {loggedInUser && (
-                      <Avatar onClick={handleLogout} name={loggedInUser.name} />
+                      <Avatar
+                        className="cursor-pointer"
+                        onClick={handleLogout}
+                        name={loggedInUser.name}
+                      />
                     )}
                   </div>
                 </div>
