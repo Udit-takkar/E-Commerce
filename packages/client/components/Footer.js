@@ -23,7 +23,7 @@ const footerLinks = [
         redirect: '/',
       },
       {
-        name: 'Artify Stories',
+        name: 'Aakriti Stories',
         redirect: '/',
       },
       {
@@ -31,7 +31,7 @@ const footerLinks = [
         redirect: '/',
       },
       {
-        name: 'Artify Wholesale',
+        name: 'Aakriti Wholesale',
         redirect: '/',
       },
       {
@@ -147,7 +147,7 @@ function Footer() {
             <div className="w-full sm:w-1/2">
               <h2 className="text-primary-grey">Mail Us:</h2>
               <p className="mt-2 leading-5">
-                Artify Internet Private Limited,
+                Aakriti Internet Private Limited,
                 <br />
                 Buildings Alyssa, Begonia &<br />
                 Clove Embassy Tech Village,
@@ -163,7 +163,7 @@ function Footer() {
             <div className="w-full sm:w-1/2">
               <h2 className="text-primary-grey">Registered Office Address:</h2>
               <p className="mt-2 leading-5">
-                Artify Internet Private Limited,
+                Aakriti Internet Private Limited,
                 <br />
                 Plot No 1 Rohini,
                 <br />
@@ -190,7 +190,7 @@ function Footer() {
             <span className="text-yellow-400">
               <BriefcaseIcon className="block h-6 w-6" aria-hidden="true" />
             </span>
-            Sell On Artify
+            Sell On Aakriti
           </a>
           <a
             href="/"
@@ -229,7 +229,7 @@ function Footer() {
             Help Center
           </a>
 
-          <span>&copy; 2022-{new Date().getFullYear()} artify.com</span>
+          <span>&copy; 2022-{new Date().getFullYear()} Aakriti.com</span>
         </div>
       </>
     )

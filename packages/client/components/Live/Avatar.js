@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+// eslint-disable-next-line jsx-a11y/click-events-have-key-events
 import React from 'react';
 // import { getAvatarBg } from './lib/getAvatarBg';
 
@@ -43,7 +46,13 @@ export const getAvatarBg = name => {
   return { initials: initials || '', color: colorsList[colorIndex - 1] };
 };
 
-function Avatar({ name, className = '', size = 'sm', customSize = 0 }) {
+function Avatar({
+  name,
+  className = '',
+  size = 'sm',
+  customSize = 0,
+  onClick,
+}) {
   const { initials, color } = getAvatarBg(name);
   const sizeClass = {
     sm: 'w-8 h-8 text-xs',
@@ -62,6 +71,7 @@ function Avatar({ name, className = '', size = 'sm', customSize = 0 }) {
     <div
       className={`flex justify-center items-center font-bold object-cover  text-white ${sizeClass[size]} rounded-full ${className}`}
       style={{ backgroundColor: color, ...custom }}
+      onClick={onClick}
     >
       {initials}
     </div>

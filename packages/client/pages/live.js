@@ -51,7 +51,7 @@ function LiveEvents() {
   return (
     <div className="header-landing">
       <Head>
-        <title>Artify Live Events</title>
+        <title>Aakriti Live Events</title>
         <meta name="description" content="e commerce platform for artisans" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

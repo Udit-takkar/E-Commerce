@@ -141,13 +141,13 @@ function Sidebar({ activeTab, setToggleSidebar }) {
             rel="noreferrer"
             className="font-medium text-lg hover:text-blue-500"
           >
-            Team Artify
+            Team Aakriti
           </a>
           <a
-            href="mailto:artify@gmail.com"
+            href="mailto:Aakriti@gmail.com"
             className="text-gray-300 text-sm hover:text-blue-500"
           >
-            artify@gmail.com
+            Aakriti@gmail.com
           </a>
         </div>
       </div>

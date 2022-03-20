@@ -5,21 +5,28 @@ import Link from 'next/link';
 import Logo from '../assets/logo.png';
 import Image from 'next/image';
 import useUser from '../hooks/useUser';
+import Avatar from './Live/Avatar';
+import useLogout from '../hooks/useLogout';
 
-// const navigation = [
-//   { name: 'Dashboard', href: '#', current: true },
-//   { name: 'Team', href: '#', current: false },
-//   { name: 'Projects', href: '#', current: false },
-//   { name: 'Calendar', href: '#', current: false },
-// ];
+const unauthenticatedNav = [
+  { name: 'Log In', href: '/login' },
+  { name: 'Sign Up', href: '/signup' },
+  { name: 'Become a seller', href: '/sellerSignup' },
+];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+const authenticatedNav = [
+  { name: 'Cart', href: '/cart', role: ['user'] },
+  { name: 'Dashboard', href: '/dashboard/sellerDashboard', role: ['seller'] },
+];
 
 export default function Header() {
   const { data: loggedInUser } = useUser();
+  const logout = useLogout();
   console.log('Logged in ', loggedInUser);
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <Disclosure
       as="nav"
@@ -42,7 +49,7 @@ export default function Header() {
               </div>
               <div className="flex-1 flex items-center justify-between h-full">
                 <div className="flex-shrink-0 flex items-center h-full">
-                  <div className="my-auto max-w-[100px] mt-4">
+                  <div className="my-auto max-w-[115px] mt-4">
                     <Image src={Logo} alt="main-logo" />
                   </div>
                 </div>
@@ -71,35 +78,28 @@ export default function Header() {
                         placeholder="Search..."
                       />
                     </div>
-
-                    <Link href="/sellerSignup">
-                      <span className="font-medium cursor-pointer">
-                        Become a seller
-                      </span>
-                    </Link>
-                    <Link href="/login">
-                      <span className="font-medium cursor-pointer">Log in</span>
-                    </Link>
-                    <Link href="/signup">
-                      <span className="font-medium cursor-pointer">
-                        Sign up
-                      </span>
-                    </Link>
-                    {/* {navigation.map(item => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium',
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))} */}
+                    {loggedInUser
+                      ? authenticatedNav.map(item => {
+                          if (item.role.indexOf(loggedInUser.role) !== -1) {
+                            return (
+                              <Link href={item.href}>
+                                <span className="font-medium cursor-pointer">
+                                  {item.name}
+                                </span>
+                              </Link>
+                            );
+                          }
+                        })
+                      : unauthenticatedNav.map(item => (
+                          <Link href={item.href}>
+                            <span className="font-medium cursor-pointer">
+                              {item.name}
+                            </span>
+                          </Link>
+                        ))}
+                    {loggedInUser && (
+                      <Avatar onClick={handleLogout} name={loggedInUser.name} />
+                    )}
                   </div>
                 </div>
               </div>

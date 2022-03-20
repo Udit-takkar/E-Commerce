@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Artify Home Page</title>
+        <title>Aakriti Home Page</title>
         <meta name="description" content="E commerce platform for artisans" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
