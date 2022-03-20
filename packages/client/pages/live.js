@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import Image from 'next/image';
 import Fire from '../assets/fire.png';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const sampleEvents = [
   {
@@ -42,6 +44,10 @@ const sampleEvents = [
 ];
 
 function LiveEvents() {
+  const router = useRouter();
+  const joinRoom = () => {
+    router.push('/livestage');
+  };
   return (
     <div className="header-landing">
       <Head>
@@ -72,7 +78,8 @@ function LiveEvents() {
         <h1 className="text-xl font-bold mt-5 ml-2.5 mb-4">Scheduled Events</h1>
         <div className="flex flex-wrap mt-2">
           {sampleEvents.map(event => (
-            <div className={event.class} key={event.name}>
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <div className={event.class} onClick={joinRoom} key={event.name}>
               <div className="flex items-center justify-between ">
                 <div>
                   <Image src={Fire} alt="fire-icon" height={40} width={30} />
