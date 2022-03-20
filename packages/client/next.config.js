@@ -5,6 +5,12 @@ const nextConfig = {
     domains: [
       'firebasestorage.googleapis.com',
       'd1qek42f5a2sdm.cloudfront.net',
+      'www.singlegrain.com',
+      'openclipart.org',
+      'img.icons8.com',
+      'typof.com',
+      'img.freepik.com',
+      'media.istockphoto.com',
     ],
   },
 };

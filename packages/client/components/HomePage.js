@@ -4,8 +4,10 @@ import Image from 'next/image';
 import MainImg from '../assets/MainImage.png';
 import data from '../sampleData.json';
 import ProductSection from './Products/ProductSection';
+import { useRouter } from 'next/router';
 
 function HomePage(props) {
+  const router = useRouter();
   return (
     <div className="header-landing">
       <div className="container-hp">
@@ -29,7 +31,8 @@ function HomePage(props) {
 
               <button
                 type="button"
-                className="get-started-btn ml-5 font-helvetica   px-20 py-3  bg-gradient-to-r  hover:bg-gradient-to-br focus:ring-4 focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50   font-medium rounded-lg text-md text-center "
+                onClick={() => router.push('/howitworks')}
+                className="get-started-btn ml-5 font-helvetica   px-20 py-3  bg-gradient-to-r  hover:bg-gradient-to-br   shadow-lg shadow-cyan-500/50   font-medium rounded-lg text-md text-center "
               >
                 How it works?
               </button>
