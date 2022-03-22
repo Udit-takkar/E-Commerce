@@ -11,6 +11,7 @@ const nextConfig = {
       'typof.com',
       'img.freepik.com',
       'media.istockphoto.com',
+      '5.imimg.com',
     ],
   },
 };

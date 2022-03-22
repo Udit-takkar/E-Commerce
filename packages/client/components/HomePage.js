@@ -2,12 +2,23 @@
 import React from 'react';
 import Image from 'next/image';
 import MainImg from '../assets/MainImage.png';
-import data from '../sampleData.json';
+// import data from '../sampleData.json';
 import ProductSection from './Products/ProductSection';
 import { useRouter } from 'next/router';
+import useProducts from '../hooks/useProducts';
+import ProductCard from './Products/ProductCard';
+import useCart from '../hooks/useCart';
+import Link from 'next/link';
+
+export function getPercentageDecreased(originalPrice, basePrice) {
+  return Math.round(((originalPrice - basePrice) / originalPrice) * 100);
+}
 
 function HomePage(props) {
   const router = useRouter();
+  const { data, setQueryVariables, isLoading } = useProducts();
+  const { addToCart, cart, removeFromCart } = useCart();
+
   return (
     <div className="header-landing">
       <div className="container-hp">
@@ -127,9 +138,51 @@ function HomePage(props) {
         </div>
       </div>
       {/* Top Categories with products */}
-      {data.top_products.map(product => (
+      {/* <div> */}
+      <div className="lg:col-span-3">
+        <div className="flex justify-between items-center mx-4">
+          <h1 className="font-bold  text-2xl mt-16 mb-8">Trending Products</h1>
+          <Link href="/products" className="cursor-pointer">
+            <h1 className=" text-blue-500 mr-4 cursor-pointer">See All</h1>
+          </Link>
+        </div>
+        <div className="SProductGrid">
+          {data?.slice(4, 12).map(product => {
+            const onlyAboveProduct = cart.filter(
+              item => item._id === product._id,
+            )[0];
+            const isInCart = !!onlyAboveProduct;
+
+            const percentage = getPercentageDecreased(
+              product.price,
+              product.sale_price,
+            );
+
+            const isDiscount = product.price !== product.sale_price;
+
+            const handleAddToCart = () => {
+              addToCart(product);
+            };
+            return (
+              <ProductCard
+                product={product}
+                key={product.id}
+                category_id={product.category.id}
+                handleAddToCart={handleAddToCart}
+                isInCart={isInCart}
+                onlyAboveProduct={onlyAboveProduct}
+                removeFromCart={removeFromCart}
+                percentage={percentage}
+                isDiscount={isDiscount}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* {data.top_products.map(product => (
         <ProductSection key={product.category_name} {...product} />
-      ))}
+      ))} */}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function Products() {
     <div className="bg-white">
       <Head>
         <title>Aakriti Products</title>
-        <meta name="description" content="Arify" />
+        <meta name="description" content="Aakriti" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
