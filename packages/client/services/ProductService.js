@@ -83,19 +83,19 @@ const getProductsRecommendation = async id => {
         sale_price: 50,
         rating: 4,
       },
-      {
-        brand: 'cotton leaf',
-        category: ' Blankets, Quilts & Dohars',
-        description:
-          'cotton leaf Floral Single Blanket 104 (1 Authentic Solapuri Chaddar)\n  Price: Rs. 599\n\t\t\t\t\n\t\t\tGive authentic look to your bedroom with this Authentic Designed, 100 % Cotton, Handloom Woven Rich Solapuri Chaddar. This will add up to fresh look and comfort of your bedroom.\nGive authentic look to your bedroom with this Authentic Designed, 100 % Cotton, Handloom Woven Rich Solapuri Chaddar. This will add up to fresh look and comfort of your bedroom.',
-        imageURL:
-          'http://img6a.flixcart.com/image/blanket/k/8/y/chdr-104-cotton-leaf-solapur-chaddar-1100x1100-imaeedxedwd7mbfy.jpeg',
-        name: 'cotton leaf Floral Single Blanket 104',
-        _id: 57,
-        price: 1999,
-        sale_price: 1900,
-        rating: 4.3,
-      },
+      // {
+      //   brand: 'cotton leaf',
+      //   category: ' Blankets, Quilts & Dohars',
+      //   description:
+      //     'cotton leaf Floral Single Blanket 104 (1 Authentic Solapuri Chaddar)\n  Price: Rs. 599\n\t\t\t\t\n\t\t\tGive authentic look to your bedroom with this Authentic Designed, 100 % Cotton, Handloom Woven Rich Solapuri Chaddar. This will add up to fresh look and comfort of your bedroom.\nGive authentic look to your bedroom with this Authentic Designed, 100 % Cotton, Handloom Woven Rich Solapuri Chaddar. This will add up to fresh look and comfort of your bedroom.',
+      //   imageURL:
+      //     'https://img6a.flixcart.com/image/blanket/k/8/y/chdr-104-cotton-leaf-solapur-chaddar-1100x1100-imaeedxedwd7mbfy.jpeg',
+      //   name: 'cotton leaf Floral Single Blanket 104',
+      //   _id: 57,
+      //   price: 1999,
+      //   sale_price: 1900,
+      //   rating: 4.3,
+      // },
     ];
     return data;
   } catch (err) {

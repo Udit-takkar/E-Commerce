@@ -15,6 +15,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&family=Poppins:wght@500&display=swap');
 
 :root {
   --header-height: 72px;
@@ -490,3 +491,16 @@ a {
     --talk-card-width: unset;
   }
 } */
+
+.account-address{
+      font-family: "Fira-Mono";
+      box-shadow: rgb(112 58 202 / 20%) 0px 3px 6px;
+      border-radius: 100px;
+      height: 34px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      padding: 20px 0.75em;
+      font-size: 0.9em;
+      background: white;
+}
